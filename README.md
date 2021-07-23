@@ -25,10 +25,12 @@ npm i vue-webview-js-bridge
 
 ```js
 // main.js
-import Vue from 'vue'
+import { createApp } from "vue";
+import AppLayout from "./layout/index.vue";
 import VueJsBridge from 'vue-webview-js-bridge'
 
-Vue.use(VueJsBridge)
+const app = createApp(AppLayout);
+app.use(VueJsBridge);
 
 // component.vue
 export default {

@@ -1,4 +1,4 @@
-## vue-webview-js-bridge
+# vue-webview-js-bridge
 
 ![GitHub](https://img.shields.io/github/license/kntt/vue-js-bridge.svg)
 ![GitHub package.json version](https://img.shields.io/github/package-json/v/kntt/vue-js-bridge.svg)
@@ -28,16 +28,7 @@ npm i vue-webview-js-bridge
 import Vue from 'vue'
 import VueJsBridge from 'vue-webview-js-bridge'
 
-Vue.use(VueJsBridge, {
-  debug: true,
-  nativeHandlerName: 'testObjcCallback',
-  mock: true,
-  mockHandler (payload, next) {
-    // mock by payload
-    // call next(data) to mock data
-  }
-  // ...
-})
+Vue.use(VueJsBridge)
 
 // component.vue
 export default {
@@ -51,33 +42,29 @@ export default {
     }
   },
   mounted () {
-    this.$bridge.registerHandler('testJavascriptHandler', (data, callback) => {
+    // Native call Web
+    this.$bridge.registerHandler('handlerName', (data, callback) => {
       this.code = data
       console.log('data from native:', data)
-      const responseData = { 'Javascript Says':'Right back atcha!' }
-			console.log('JS responding with', responseData)
-      callback(responseData)
+      callback(data)
     })
   },
   methods: {
     async callNative () {
-      try {
-        let res = await this.$bridge.callHandler({
-          type: 'optionType',
-          data: {
-            name: 'optionData'
-          }
-        })
-        this.code = res
-      } catch (error) {
+      // Web call Mobile
+      this.$bridge.callHandler("handlerName", payload)
+      .then((data) => {
+        console.log('data',data)
+      })
+      .catch((error) => {
         console.log('error', error)
-      }
+      });
     }
   }
 }
 ```
 
-## TypeScript 支持
+<!-- ## TypeScript 支持
 ### main.ts
 ```ts
 // ...
@@ -185,9 +172,9 @@ mockHandler (payload, next) {
   // }
   // call next(data) to mock data
 }
-```
+``` -->
 
-## 提供的方法(Methods)
+<!-- ## 提供的方法(Methods)
 ### registerHandler
 - description：注册一个bridge提供给原生开发者调用，第一个参数name(和原生开发者协商好的bridgeName)，第二个参数callback函数，
 - callback: callback函数接收两个参数，第一个参数是native传来的数据data，第二个参数是原生传来的responseCallback，当需要时通知native我们的状态
@@ -215,7 +202,7 @@ this.$bridge.registerHandler('testJavascriptHandler', (data, callback) => {
 ## Todo
 
 * [ ] 增加单元测试
-* [x] 增加 TypeScript types 支持
+* [x] 增加 TypeScript types 支持 -->
 
 ## License
 

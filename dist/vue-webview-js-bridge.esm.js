@@ -1,6 +1,6 @@
 /**
  * vue-webview-js-bridge v0.0.8
- * (c) 2019 Kntt
+ * (c) 2021 Kntt
  * @license MIT
  */
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) {
@@ -248,10 +248,10 @@ var VueJsBridgePlugin = function () {
 
   }, {
     key: 'callHandler',
-    value: function callHandler(payload) {
-      var _options2 = this.options,
-          debug = _options2.debug,
-          nativeHandlerName = _options2.nativeHandlerName;
+    value: function callHandler() {
+      var name = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : this.options.nativeHandlerName;
+      var payload = arguments[1];
+      var debug = this.options.debug;
 
       var _resolve = void 0;
       var _reject = void 0;
@@ -263,7 +263,7 @@ var VueJsBridgePlugin = function () {
       debug && console.info('[VueJsBridge] Start calling NativeHandler with payload:', payload);
       this.init(function (bridge) {
         try {
-          bridge.callHandler(nativeHandlerName, payload, function (response) {
+          bridge.callHandler(name, payload, function (response) {
             debug && console.info('[VueJsBridge] Success response:', response);
             // 调用成功，使用保留的resolve改变返回的promise状态
             _resolve(response);
@@ -292,7 +292,7 @@ var defaultOptions = {
 var index = {
   install: function install(Vue, options) {
     var initConfig = _extends({}, defaultOptions, options);
-    Object.defineProperty(Vue.prototype, '$bridge', { value: new VueJsBridgePlugin(initConfig) });
+    Object.defineProperty(Vue.config.globalProperties, '$bridge', { value: new VueJsBridgePlugin(initConfig) });
   },
 
   version: '0.0.8'

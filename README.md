@@ -4,10 +4,10 @@
 ![GitHub package.json version](https://img.shields.io/github/package-json/v/kntt/vue-js-bridge.svg)
 
 - WebviewJavascriptBridge plugin for Vue.js
-- 基于[WebViewJavascriptBridge](https://github.com/marcuswestin/WebViewJavascriptBridge)(ios), [JsBridge](https://github.com/lzyzsd/JsBridge)(android)开发
-- Promise封装，支持`then`或者`async/await`等方式
+- Based on [WebViewJavascriptBridge](https://github.com/marcuswestin/WebViewJavascriptBridge)(ios), [JsBridge](https://github.com/lzyzsd/JsBridge)(android) Development
+- Promise Encapsulation，support `then` or `async/await`
 
-## 安装
+## Install
 
 yarn:
 
@@ -205,6 +205,10 @@ this.$bridge.registerHandler('testJavascriptHandler', (data, callback) => {
 
 * [ ] 增加单元测试
 * [x] 增加 TypeScript types 支持 -->
+
+## Reference
+
+[vue-webview-js-bridge](https://www.npmjs.com/package/vue-webview-js-bridge)
 
 ## License
 

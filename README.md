@@ -1,4 +1,4 @@
-# vue-webview-js-bridge
+# vue-3-webview-js-bridge
 
 ![GitHub](https://img.shields.io/github/license/kntt/vue-js-bridge.svg)
 ![GitHub package.json version](https://img.shields.io/github/package-json/v/kntt/vue-js-bridge.svg)
@@ -6,6 +6,8 @@
 - WebviewJavascriptBridge plugin for Vue.js
 - Based on [WebViewJavascriptBridge](https://github.com/marcuswestin/WebViewJavascriptBridge)(ios), [JsBridge](https://github.com/lzyzsd/JsBridge)(android) Development
 - Promise Encapsulation，support `then` or `async/await`
+- 由于个人项目需要定制， 支持 ios 框架库 [WKWebViewJavascriptBridge
+](https://github.com/Lision/WKWebViewJavascriptBridge)
 
 ## Install
 

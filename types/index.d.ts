@@ -13,6 +13,12 @@ declare module "vue/types/vue" {
   }
 }
 
+declare module '@vue/runtime-core' {
+  interface ComponentCustomProperties {
+    $bridge: VueJsBridgePlugin
+  }
+}
+
 interface Bridge<P = any, R = any, Q = any> {
   registerHandler (name: string, fn: (request:Q) => void): void
   callHandler (nativeHandler: string, payload: P, callback:(response: R) => void): void

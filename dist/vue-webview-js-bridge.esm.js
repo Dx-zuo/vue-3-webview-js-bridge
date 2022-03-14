@@ -242,9 +242,8 @@ var VueJsBridgePlugin = function () {
 
   }, {
     key: 'callHandler',
-    value: function callHandler() {
-      var name = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : this.options.nativeHandlerName;
-      var payload = arguments[1];
+    value: function callHandler(payload) {
+      var name = this.options.nativeHandlerName;
       var debug = this.options.debug;
 
       var _resolve = void 0;
